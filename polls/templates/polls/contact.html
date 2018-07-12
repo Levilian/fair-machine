@@ -1,0 +1,32 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="{% url 'polls:index' %}">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+	  </ol>
+	</nav>
+
+	<div class="content-container container">
+
+	    <h1 class="text-center p-4 display-4"> Contact </h1>
+	    <p class="text-justify">
+				Thank you for taking the time to complete this UnBias project online experiment.
+			  If you would like to know more about the project, please visit our website
+				 or contact <a href="mailto:helena.webb@cs.ox.ac.uk">helena.webb@cs.ox.ac.uk</a>
+				 or <a href="mailto:ansgar.koene@nottingham.ac.uk">ansgar.koene@nottingham.ac.uk</a>
+	    </p>
+
+	    <br>
+	    <div class="text-center"><i class="fas fa-globe fa-3x"></i></div>
+	    <div class="bd-example">
+
+		  <address>
+		    <strong>Website</strong><br />
+		    <a href="http://unbias.wp.horizon.ac.uk/">http://unbias.wp.horizon.ac.uk/</a>
+		  </address>
+		</div>
+
+	</div>
+{% endblock %}

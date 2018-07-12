@@ -1,0 +1,127 @@
+{% extends 'polls/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="{% url 'polls:index' %}">Home</a></li>
+	    <li class="breadcrumb-item"><a href="{% url 'polls:decision' %}">Scenarios</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Stats</li>
+	  </ol>
+	</nav>
+
+	<div class="content-container container">
+		<h1 class="text-center p-4"> Your Stats </h1>
+
+		{% if request.session.num_decisions or request.session.group_num_decisions %}
+
+			<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	        <script type="text/javascript" src="{% static 'polls/js/Chart.min.js' %}"></script>
+
+	        <script type="text/javascript">
+	        var getJSON = function(url, callback) {
+			    var xhr = new XMLHttpRequest();
+			    xhr.open('GET', url, true);
+			    xhr.onload = function() {
+			      var status = xhr.status;
+			      if (status === 200) {
+			        callback(null, xhr.response);
+			      } else {
+			        callback(status, xhr.response);
+			      }
+			    };
+			    xhr.send();
+			};
+			</script>
+
+			<p>
+			{% if request.session.num_decisions %}
+
+			{% endif %}
+
+			{% if request.session.group_num_decisions %}
+
+			{% endif %}
+
+			</p>
+
+			{% if request.session.num_decisions %}
+
+				<h4 class="text-center p-4"> Visualization </h4>
+
+				<canvas id="myChart" width="500" height="400"></canvas>
+
+				<!-- <script type="text/javascript">
+				getJSON('{% url "polls:line_chart_json" %}',
+				function(err, data) {
+				  if (err !== null) {
+				    alert('Something went wrong: ' + err);
+				  } else {
+				    console.log(data)
+					obj = JSON.parse(data)
+				    new Chart(document.getElementById("myChart"), {
+						  type: 'line',
+						  data: obj
+					});
+				  }
+				});
+				</script> -->
+
+			{% endif %}
+
+
+			{% if request.session.group_num_decisions %}
+
+				<h4 class="text-center p-4"> Total Kills per Group Decision </h4>
+
+				<canvas id="myChart2" width="500" height="400"></canvas>
+
+				<script type="text/javascript">
+				getJSON('{% url "polls:line_chart_json2" %}',
+				function(err, data) {
+				  if (err !== null) {
+				    alert('Something went wrong: ' + err);
+				  } else {
+				    console.log(data)
+					obj = JSON.parse(data)
+				    new Chart(document.getElementById("myChart2"), {
+						  type: 'line',
+						  data: obj
+					});
+				  }
+				});
+				</script>
+
+			{% endif %}
+
+		{% else %}
+			<p class="text-center">
+				No stats recorded yet! Make your first decision.
+			</p>
+		{% endif %}
+
+		<!-- {{ request.session.test }} <br> {{ request.session.test2 }} <br> -->
+		<!-- {{ request.session.decisions_range }} <br> {{ request.session.kill_list }} <br> -->
+
+		<br>
+	</div>
+
+	<div class="content-container container">
+
+		<h1 class="text-center p-4"> Results </h1>
+
+		<p>
+			Total number of decisions made: {{ view.stats.total_decisions }} <br>
+			Preference for maximizing social welfare: {{ view.stats.kill_count }} <br>
+			Preference for minimizing the number of bad outcomes: {{ view.stats.group_kill_count }} <br>
+			<br><br>
+			<!-- {{ view.stats.get_confidence_preference_display }} <br>
+			{{ view.stats.get_age_preference_display }} <br>
+			{{ view.stats.get_status_preference_display }} <br> -->
+		</p>
+
+	</div>
+
+	<div class="text-center"><a href="{% url 'polls:decision' %}">Back to scenarios</a></div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    <div class="jumbotron rounded bg-inverse text-white">
+      <h1 class="display-3">Which algorithm is fairer?</h1>
+      <p class="lead">Fair Machine is a thought experiment inspired by <a id="moral" href="http://moralmachine.mit.edu/"> MIT's Moral Machine</a>.
+      Test</p>
+      <p><a class="btn btn-lg btn-success" href="{% url 'polls:decision' %}" role="button">Make your decisions</a></p>
+    </div>
+    <p class="lead text-justify">
+      Test
+      {% load random_image %}
+			<img src="{{ MEDIA_URL }}{% random_image "" %}">
+      <!-- <img src="media/polls/media/default.jpg"> -->
+
+    </p>
+{% endblock %}

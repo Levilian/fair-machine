@@ -1,0 +1,32 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="{% url 'polls:index' %}">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">About</li>
+	  </ol>
+	</nav>
+
+	<div class="content-container container">
+	    <h1 class="text-center p-4 display-4"> About </h1>
+	    <p class="text-justify">
+	    	<br><br>
+	    	Test
+	    </p>
+	    <br>
+	    <div class="text-center"><i class="fas fa-terminal fa-3x"></i></div>
+
+	    <br>
+
+	    <h1 class="text-center p-4 display-5 decorated"><span> UnBias </span></h1>
+
+	    <p class="text-justify">
+	    	Emancipating Users Against Algorithmic Biases for a Trusted Digital Economy
+				 <br>--<a href="http://unbias.wp.horizon.ac.uk/">(http://unbias.wp.horizon.ac.uk/)</a>
+	    </p>
+
+	    <div class="text-center"><i class="fas fa-university fa-4x"></i></div>
+
+    </div>
+{% endblock %}
